@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import ThemeButton from './ThemeButton';
 
 const SettingsScreen = () => (
   <View>
-    <Text>SettingsScreen</Text>
+    <ThemeButton />
   </View>
 );
 
