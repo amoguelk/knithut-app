@@ -8,10 +8,12 @@ import {
   SettingsScreen,
 } from 'screens';
 import { useTheme } from 'contexts/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const Stack = createNativeStackNavigator();
 const MainStack = () => {
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Stack.Navigator
@@ -28,27 +30,30 @@ const MainStack = () => {
       <Stack.Screen
         name="menu"
         component={MenuScreen}
-        options={{ title: 'Menu' }}
+        options={{
+          title: 'Knit Hut',
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 30 },
+        }}
       />
       <Stack.Screen
         name="patterns"
         component={PatternsScreen}
-        options={{ title: 'Patterns' }}
+        options={{ title: t('patterns:patterns_long') }}
       />
       <Stack.Screen
         name="wips"
         component={WipScreen}
-        options={{ title: 'WIPs' }}
+        options={{ title: t('wips:wips_long') }}
       />
       <Stack.Screen
         name="list"
         component={ListScreen}
-        options={{ title: 'List' }}
+        options={{ title: t('menu:shopping_list') }}
       />
       <Stack.Screen
         name="settings"
         component={SettingsScreen}
-        options={{ title: 'Settings' }}
+        options={{ title: t('menu:settings') }}
       />
     </Stack.Navigator>
   );
