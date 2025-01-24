@@ -1,8 +1,8 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import MainStack from './src/navigation/MainNavigator';
 
-function App(): React.JSX.Element {
+function App() {
   return (
     <NavigationContainer>
       <MainStack />

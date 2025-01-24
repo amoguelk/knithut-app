@@ -1,7 +1,7 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {View} from 'react-native';
-import {Button} from '@react-navigation/elements';
+import { useNavigation } from '@react-navigation/native';
+import { View } from 'react-native';
+import { Button } from '@react-navigation/elements';
 
 const MenuScreen = () => {
   const navigation = useNavigation();
@@ -35,10 +35,11 @@ const MenuScreen = () => {
 
   return (
     <View>
-      {options.map((option, i) => (
+      {options.map(option => (
         <Button
           key={option.nav_name}
-          onPress={() => navigation.navigate(option.nav_name)}>
+          onPress={() => navigation.navigate(option.nav_name)}
+        >
           {option.nav_name}
         </Button>
       ))}
