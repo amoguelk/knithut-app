@@ -1,8 +1,14 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View } from 'react-native';
+import { Image, View } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useTranslation } from 'react-i18next';
+
+const HutLogo = require('assets/img/hut.png');
+const PatternsIcon = require('assets/img/patterns.png');
+const WipIcon = require('assets/img/WIP.png');
+const ShoppingIcon = require('assets/img/shopping.png');
+const SettingsIcon = require('assets/img/settings.png');
 
 const MenuScreen = () => {
   const navigation = useNavigation();
@@ -11,25 +17,25 @@ const MenuScreen = () => {
   const options = [
     {
       id: 'pattern_icon',
-      // icon: PatternsIcon,
+      icon: PatternsIcon,
       label: t('menu:patterns'),
       nav_name: 'patterns',
     },
     {
       id: 'wip_icon',
-      // icon: WipIcon,
+      icon: WipIcon,
       label: t('menu:wips'),
       nav_name: 'wips',
     },
     {
       id: 'shopping_icon',
-      // icon: ShoppingIcon,
+      icon: ShoppingIcon,
       label: t('menu:shopping_list'),
       nav_name: 'list',
     },
     {
       id: 'settings_icon',
-      // icon: SettingsIcon,
+      icon: SettingsIcon,
       label: t('menu:settings'),
       nav_name: 'settings',
     },
@@ -37,6 +43,13 @@ const MenuScreen = () => {
 
   return (
     <View>
+      <Image
+        source={HutLogo}
+        style={{
+          width: 150,
+          height: 150,
+        }}
+      />
       {options.map(option => (
         <Button
           key={option.nav_name}
