@@ -1,8 +1,14 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+// Components
 import { Image, View } from 'react-native';
-import { Button } from '@react-navigation/elements';
+import NavIcon from 'screens/MenuScreen/NavIcon';
+// Translation
 import { useTranslation } from 'react-i18next';
+// Navigation
+import { useNavigation } from '@react-navigation/native';
+// Styling
+import { useTheme } from 'contexts/ThemeContext';
+import getStyles from './styles';
 
 const HutLogo = require('assets/img/hut.png');
 const PatternsIcon = require('assets/img/patterns.png');
@@ -12,6 +18,8 @@ const SettingsIcon = require('assets/img/settings.png');
 
 const MenuScreen = () => {
   const navigation = useNavigation();
+  const { theme } = useTheme();
+  const styles = getStyles(theme.colors);
   const { t } = useTranslation();
 
   const options = [
@@ -42,22 +50,19 @@ const MenuScreen = () => {
   ];
 
   return (
-    <View>
-      <Image
-        source={HutLogo}
-        style={{
-          width: 150,
-          height: 150,
-        }}
-      />
-      {options.map(option => (
-        <Button
-          key={option.nav_name}
-          onPress={() => navigation.navigate(option.nav_name)}
-        >
-          {option.label}
-        </Button>
-      ))}
+    <View style={styles.container}>
+      <Image source={HutLogo} style={styles.logo} />
+      <View style={styles.navContainer}>
+        {options.map((option, index) => (
+          <NavIcon
+            key={option.id}
+            icon={option.icon}
+            label={option.label}
+            onPress={() => navigation.navigate(option.nav_name)}
+            style={styles.icon(index)}
+          />
+        ))}
+      </View>
     </View>
   );
 };
