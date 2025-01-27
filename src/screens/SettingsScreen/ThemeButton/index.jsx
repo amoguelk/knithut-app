@@ -2,15 +2,14 @@ import React from 'react';
 import { Button } from 'components/buttons';
 import { useTheme } from 'contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import { darkTheme, lightTheme } from 'constants/theme/theme';
 
 const ThemeButton = () => {
   const { theme, setTheme } = useTheme();
   const { t } = useTranslation();
 
   const toggleTheme = () => {
-    if (theme.dark) setTheme(lightTheme);
-    else setTheme(darkTheme);
+    if (theme.dark) setTheme('light');
+    else setTheme('dark');
   };
 
   return (

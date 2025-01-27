@@ -9,10 +9,18 @@ const ThemeContextProvider = ({ children }) => {
   const scheme = useColorScheme();
   const [theme, setTheme] = useStorage(
     storageKeys.SETTINGS.THEME,
-    scheme === 'dark' ? darkTheme : lightTheme,
+    scheme === 'dark' ? 'dark' : 'light',
   );
 
-  const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
+  const value = useMemo(() => {
+    const setThemeWrap = (themeMode) => {
+      if (['dark', 'light'].includes(themeMode)) setTheme(themeMode);
+    };
+    return {
+      theme: theme === 'dark' ? darkTheme : lightTheme,
+      setTheme: setThemeWrap,
+    };
+  }, [theme, setTheme]);
 
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
@@ -20,11 +28,17 @@ const ThemeContextProvider = ({ children }) => {
 };
 
 /**
+ * @callback TypeThemeSetter
+ * @param {'dark' | 'light'} themeMode
+ * @returns {void}
+ */
+
+/**
  * @typedef {object} ThemeContextObject
  * @property {object} theme
  * @property {object} theme.colors
  * @property {boolean} theme.dark
- * @property {function(): void} setTheme
+ * @property {TypeThemeSetter} setTheme
  */
 
 /**
