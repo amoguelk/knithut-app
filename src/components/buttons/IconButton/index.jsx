@@ -21,7 +21,9 @@ const IconButton = ({
   const {
     theme: { colors },
   } = useTheme();
-  const rippleColor = hasRipple && getDarkerColor(color ?? colors.primary);
+  const rippleColor = hasRipple
+    ? getDarkerColor(color ?? colors.primary)
+    : null;
 
   const parseSize = () => {
     switch (size) {
@@ -42,7 +44,10 @@ const IconButton = ({
         alignSelf: 'flex-start',
         ...customStyle,
       }}
-      android_ripple={{ color: rippleColor, borderless: true }}
+      android_ripple={{
+        ...(rippleColor && { color: rippleColor }),
+        borderless: true,
+      }}
     >
       <FontAwesomeIcon
         icon={icon}
