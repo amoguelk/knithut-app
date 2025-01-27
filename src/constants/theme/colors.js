@@ -1,6 +1,7 @@
 const colors = {
   text: '#fff',
   error: '#a53535',
+  disabled: '#888',
 };
 
 const darkColors = {
