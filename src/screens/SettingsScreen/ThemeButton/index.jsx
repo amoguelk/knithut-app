@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button } from 'components/buttons';
 import { useTheme } from 'contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { darkTheme, lightTheme } from 'constants/theme/theme';
@@ -16,7 +16,7 @@ const ThemeButton = () => {
   return (
     <Button
       onPress={toggleTheme}
-      title={t('settings:current_theme', {
+      label={t('settings:current_theme', {
         theme: theme.dark ? t('settings:dark') : t('settings:light'),
       })}
     />

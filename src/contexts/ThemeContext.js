@@ -22,6 +22,8 @@ const ThemeContextProvider = ({ children }) => {
 /**
  * @typedef {object} ThemeContextObject
  * @property {object} theme
+ * @property {object} theme.colors
+ * @property {boolean} theme.dark
  * @property {function(): void} setTheme
  */
 

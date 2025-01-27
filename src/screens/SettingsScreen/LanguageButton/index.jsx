@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Button } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { LanguageContext } from 'contexts/LanguageContext';
+import { Button } from 'components/buttons';
 
 const LanguageButton = () => {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ const LanguageButton = () => {
   };
 
   return (
-    <Button onPress={toggleLanguage} title={t('settings:change_language')} />
+    <Button onPress={toggleLanguage} label={t('settings:change_language')} />
   );
 };
 
