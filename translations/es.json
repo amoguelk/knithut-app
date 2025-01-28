@@ -7,7 +7,8 @@
     "delete": "Eliminar",
     "empty_list": "Esta lista está vacía",
     "empty_tab_nav": "No hay pestañas para mostrar",
-    "wow": "Guau"
+    "wow": "Guau",
+    "close": "Cerrar"
   },
   "menu": {
     "patterns": "Patrones",
@@ -42,7 +43,13 @@
     "add_item": "Añadir artículo"
   },
   "settings": {
-    "kofi": "Mi Ko-Fi",
+    "kofi": {
+      "title": "Mi Ko-fi",
+      "message": "¡Hola! Creé esta app para mí porque nunca podía encontrar la herramienta correcta para mis necesidades. Decidí compartirla con el mundo para cualquier otra persona como yo que pudiera necesitarla.\nSi eres una de esas personas y te gustaría agradecerme (de forma monetaria), por favor considera donar a mi Ko-fi.",
+      "donate": "Donar",
+      "not_now": "Ahora no",
+      "thank_you": "¡Gracias!"
+    },
     "current_theme": "Tema actual: {{theme}}",
     "dark": "Oscuro",
     "light": "Claro",
