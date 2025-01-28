@@ -7,7 +7,8 @@
     "add": "Add",
     "wow": "WOW",
     "empty_list": "This list is empty",
-    "empty_tab_nav": "There are no tabs to display"
+    "empty_tab_nav": "There are no tabs to display",
+    "close": "Close"
   },
   "menu": {
     "patterns": "Patterns",
@@ -42,7 +43,13 @@
     "add_item": "Add item"
   },
   "settings": {
-    "kofi": "My Ko-Fi",
+    "kofi": {
+      "title": "My Ko-fi",
+      "message": "Hi! I made this app for myself because I could never find the right tool for my needs. I then put it out into the world for free for others like me who might need it.\nIf you are one of these others, and you'd like to thank me (in a monetary manner), please consider donating to my Ko-fi.",
+      "donate": "Donate",
+      "not_now": "Not now",
+      "thank_you": "Thank you!"
+    },
     "current_theme": "Current theme: {{theme}}",
     "dark": "Dark",
     "light": "Light",

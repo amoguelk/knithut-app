@@ -4,6 +4,7 @@ import { useTheme } from 'contexts/ThemeContext';
 import ThemeButton from './ThemeButton';
 import LanguageButton from './LanguageButton';
 import getStyles from './styles';
+import KoFiButton from './KoFiButton';
 
 const SettingsScreen = () => {
   const {
@@ -15,6 +16,7 @@ const SettingsScreen = () => {
     <View style={styles.container}>
       <ThemeButton />
       <LanguageButton />
+      <KoFiButton />
     </View>
   );
 };
