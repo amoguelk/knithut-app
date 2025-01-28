@@ -30,9 +30,9 @@ const IconButton = ({
       case 'sm':
         return 16;
       case 'lg':
-        return 64;
+        return 48;
       default:
-        return 32;
+        return 20;
     }
   };
 
@@ -47,6 +47,7 @@ const IconButton = ({
       android_ripple={{
         ...(rippleColor && { color: rippleColor }),
         borderless: true,
+        foreground: true,
       }}
     >
       <FontAwesomeIcon
