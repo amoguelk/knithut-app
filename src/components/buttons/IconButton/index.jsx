@@ -44,11 +44,11 @@ const IconButton = ({
         alignSelf: 'flex-start',
         ...customStyle,
       }}
-      android_ripple={{
-        ...(rippleColor && { color: rippleColor }),
-        borderless: true,
-        foreground: true,
-      }}
+      android_ripple={
+        hasRipple
+          ? { color: rippleColor, borderless: true, foreground: true }
+          : {}
+      }
     >
       <FontAwesomeIcon
         icon={icon}
