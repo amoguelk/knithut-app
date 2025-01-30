@@ -5,6 +5,7 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "add": "Add",
+    "edit": "Edit",
     "wow": "WOW",
     "empty_list": "This list is empty",
     "empty_tab_nav": "There are no tabs to display",
@@ -40,7 +41,8 @@
     "item_title_hint": "Golden yarn of Ariadne",
     "item_details_hint": "Make sure it is several yards long, that labyrinth is quite big",
     "empty_shopping_list": "Your shopping list is empty",
-    "add_item": "Add item"
+    "add_item": "Add item",
+    "edit_item": "Edit item"
   },
   "settings": {
     "kofi": {

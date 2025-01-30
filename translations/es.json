@@ -4,6 +4,7 @@
     "cancel": "Cancelar",
     "confirm": "Confirmar",
     "add": "Añadir",
+    "edit": "Editar",
     "delete": "Eliminar",
     "empty_list": "Esta lista está vacía",
     "empty_tab_nav": "No hay pestañas para mostrar",
@@ -40,7 +41,8 @@
     "item_title_hint": "Estambre dorado de Ariadne",
     "item_details_hint": "Asegurarse de que sea muy largo, ese laberinto es bastante grande",
     "empty_shopping_list": "Tu lista de compras está vacía",
-    "add_item": "Añadir artículo"
+    "add_item": "Añadir artículo",
+    "edit_item": "Editar artículo"
   },
   "settings": {
     "kofi": {

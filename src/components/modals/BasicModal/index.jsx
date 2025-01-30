@@ -16,7 +16,7 @@ const BasicModal = ({
   pressableBackdrop = true,
   title = null,
   message = null,
-  children,
+  children = null,
 }) => {
   const {
     theme: { colors },

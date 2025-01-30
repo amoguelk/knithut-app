@@ -22,6 +22,8 @@ const ConfirmModal = ({
   cancelAction = null,
   cancelText = null,
   confirmText = null,
+  disabled = false,
+  children = null,
 }) => {
   const {
     theme: { colors },
@@ -36,6 +38,7 @@ const ConfirmModal = ({
       title={title}
       message={message}
     >
+      {children}
       <View
         style={{
           flexDirection: 'row',
@@ -53,6 +56,7 @@ const ConfirmModal = ({
           label={confirmText ?? t('basic:confirm')}
           onPress={confirmAction ?? (() => setIsVisible(false))}
           containerStyle={{ flex: 1 }}
+          disabled={disabled}
         />
       </View>
     </BasicModal>
@@ -92,6 +96,14 @@ ConfirmModal.propTypes = {
    * Text displayed on the cancel button. Defaults to `Confirm` (translated if necessary).
    */
   confirmText: PropTypes.string,
+  /**
+   * Whether the confirm button is disabled. Defaults to `false`.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Additional contents of the modal.
+   */
+  children: PropTypes.node,
 };
 
 export default ConfirmModal;
