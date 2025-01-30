@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 // Components
-import { Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import ListItem from 'components/List/ListItem';
 // Documentation
 import PropTypes from 'prop-types';
@@ -30,27 +30,43 @@ const List = ({
   const styles = getStyles(colors);
   const { t } = useTranslation();
 
+  /**
+   * Called by `FlatList` to render each item
+   * @param {object} data
+   * @param {object} data.item The item to render
+   * @param {string} data.title
+   * @param {string} [data.details='']
+   * @param {boolean} [data.checked=false]
+   * @param {number} data.index The index of the item
+   * @returns
+   */
+  const renderItem = ({ item, index }) => (
+    <ListItem
+      text={item?.text}
+      details={item?.details}
+      checkable={checkable}
+      checked={checkable && item?.checked}
+      setChecked={checkable ? () => handleItemCheck(index) : () => {}}
+      onDelete={() => handleItemDelete(index)}
+      editable={editable}
+      onEdit={editable ? () => handleItemEdit(index) : () => {}}
+    />
+  );
+
   return (
-    <View style={styles.container}>
-      {items.length === 0 && (
+    <FlatList
+      contentContainerStyle={styles.container}
+      style={styles.list}
+      data={items}
+      renderItem={renderItem}
+      keyExtractor={(_, index) => `list_item_${index}`}
+      ItemSeparatorComponent={<View style={styles.divider} />}
+      ListEmptyComponent={
         <Text style={styles.emptyText}>
           {emptyText ?? t('basic:empty_list')}
         </Text>
-      )}
-      {items?.map((item, index) => (
-        <ListItem
-          key={`item_${index}`}
-          text={item?.text}
-          details={item?.details}
-          checkable={checkable}
-          checked={checkable && item?.checked}
-          setChecked={checkable ? () => handleItemCheck(index) : () => {}}
-          onDelete={() => handleItemDelete(index)}
-          editable={editable}
-          onEdit={editable ? () => handleItemEdit(index) : () => {}}
-        />
-      ))}
-    </View>
+      }
+    />
   );
 };
 

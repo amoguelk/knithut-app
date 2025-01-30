@@ -1,9 +1,15 @@
 const getStyles = (colors) => ({
   container: {
-    borderRadius: 10,
-    flex: 1,
-    backgroundColor: colors.card,
     padding: 20,
+  },
+  list: {
+    borderRadius: 10,
+    backgroundColor: colors.card,
+    flex: 1,
+  },
+  divider: {
+    borderBottomColor: colors.cardContrast,
+    borderBottomWidth: 1,
   },
   emptyText: {
     fontSize: 16,

@@ -1,7 +1,5 @@
 const getStyles = (colors) => ({
   item: {
-    borderBottomColor: colors.cardContrast,
-    borderBottomWidth: 1,
     paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
