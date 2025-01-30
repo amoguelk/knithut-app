@@ -17,10 +17,12 @@ import getStyles from './styles';
  */
 const List = ({
   items,
-  onItemDelete,
+  handleItemDelete,
   checkable = false,
-  setItemChecked = () => {},
+  handleItemCheck = () => {},
   emptyText = null,
+  editable = false,
+  handleItemEdit = () => {},
 }) => {
   const {
     theme: { colors },
@@ -42,8 +44,10 @@ const List = ({
           details={item?.details}
           checkable={checkable}
           checked={checkable && item?.checked}
-          setChecked={checkable ? () => setItemChecked(index) : () => {}}
-          onDelete={() => onItemDelete(index)}
+          setChecked={checkable ? () => handleItemCheck(index) : () => {}}
+          onDelete={() => handleItemDelete(index)}
+          editable={editable}
+          onEdit={editable ? () => handleItemEdit(index) : () => {}}
         />
       ))}
     </View>
@@ -66,20 +70,31 @@ List.propTypes = {
   ).isRequired,
   /**
    * Called when an item is deleted.
+   * @param {number} index The index of the deleted item
    */
-  onItemDelete: PropTypes.func.isRequired,
+  handleItemDelete: PropTypes.func.isRequired,
   /**
    * Whether the list supports checking items. Defaults to `false`.
    */
   checkable: PropTypes.bool,
   /**
    * Called when an item is checked, if the list supports it.
+   * @param {number} index The index of the checked item
    */
-  setItemChecked: PropTypes.func,
+  handleItemCheck: PropTypes.func,
   /**
    * Text displayed when the list is empty. Defaults to `"This list is empty"` (translated if necessary).
    */
   emptyText: PropTypes.string,
+  /**
+   * Whether the list supports editing items. Defaults to `false`.
+   */
+  editable: PropTypes.bool,
+  /**
+   * Called when an item is edited, if the list supports it.
+   * @param {number} index The index of the item to be edited
+   */
+  handleItemEdit: PropTypes.func,
 };
 
 export default List;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import List from 'components/List';
 import { Button } from 'components/buttons';
-import CreateItemModal from 'screens/ListScreen/CreateItemModal';
+import CreateEditItemModal from 'screens/ListScreen/CreateEditItemModal';
 import { useTheme } from 'contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { useStorage, storageKeys } from 'hooks/useStorage';
@@ -16,17 +16,31 @@ const ListScreen = () => {
   } = useTheme();
   const { t } = useTranslation();
   const [items, setItems] = useStorage(storageKeys.APP.SHOPPING, []);
-  const [isAddModalVisible, setIsAddModalVisible] = useState(false);
+  // Item add or edit
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editIndex, setEditIndex] = useState(-1);
+  const [title, setTitle] = useState('');
+  const [details, setDetails] = useState('');
+
+  /**
+   * Called when an item is selected for editing
+   * @param {number} index The index of the item
+   */
+  const handleItemEdit = (index) => {
+    setEditIndex(index);
+    setTitle(items[index].text);
+    setDetails(items[index].details ?? '');
+    setIsModalVisible(true);
+  };
 
   /**
    * Called when the `CreateItem` modal is closed, checking whether
    * the item has to be added or not.
-   * @param {string} reason The reason why the modal was closed. Can be `cancel` or `add`
-   * @param {string} title The title or main text of the item created
-   * @param {string} details The details or supplementary text of the item created
+   * @param {'cancel' |'add' | 'edit'} reason The reason why the modal was closed. Can be `'cancel'`, `'add'` or `'edit'`.
    */
-  const handleModalClose = (reason, title, details) => {
-    setIsAddModalVisible(false);
+  const handleModalClose = (reason) => {
+    setIsModalVisible(false);
+    setEditIndex(-1);
     if (reason === 'add') {
       setItems([
         ...items,
@@ -36,7 +50,32 @@ const ListScreen = () => {
           details: details === '' ? null : details,
         },
       ]);
+    } else if (reason === 'edit') {
+      const itemsCopy = [...items];
+      itemsCopy[editIndex].text = title;
+      itemsCopy[editIndex].details = details;
+      setItems(itemsCopy);
     }
+  };
+
+  /**
+   * Called when an item is checked or unchecked
+   * @param {number} index The index of the item
+   */
+  const handleItemCheck = (index) => {
+    const itemsCopy = [...items];
+    itemsCopy[index].checked = !itemsCopy[index].checked;
+    setItems(itemsCopy);
+  };
+
+  /**
+   * Called when an item is deleted
+   * @param {number} index The index of the item
+   */
+  const handleItemDelete = (index) => {
+    const itemsCopy = [...items];
+    itemsCopy.splice(index, 1);
+    setItems(itemsCopy);
   };
 
   return (
@@ -49,18 +88,26 @@ const ListScreen = () => {
     >
       <List
         checkable
+        editable
         items={items}
         emptyText={t('shopping_list:empty_shopping_list')}
-        onItemDelete={() => {}}
+        handleItemDelete={handleItemDelete}
+        handleItemCheck={handleItemCheck}
+        handleItemEdit={handleItemEdit}
       />
       <Button
         label={t('shopping_list:add_item')}
-        onPress={() => setIsAddModalVisible(true)}
+        onPress={() => setIsModalVisible(true)}
       />
-      <CreateItemModal
-        isVisible={isAddModalVisible}
-        setIsVisible={setIsAddModalVisible}
+      <CreateEditItemModal
+        isVisible={isModalVisible}
+        setIsVisible={setIsModalVisible}
         onClose={handleModalClose}
+        title={title}
+        setTitle={setTitle}
+        details={details}
+        setDetails={setDetails}
+        isEdit={editIndex > -1}
       />
     </View>
   );

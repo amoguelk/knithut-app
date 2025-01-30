@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import { IconButton } from 'components/buttons';
 import { ConfirmModal } from 'components/modals';
 import {
+  faPencil,
   faSquare,
   faSquareCheck,
   faTrashCan,
@@ -26,6 +27,8 @@ const ListItem = ({
   checked = false,
   setChecked = () => {},
   onDelete,
+  editable = false,
+  onEdit = () => {},
 }) => {
   const {
     theme: { colors },
@@ -53,6 +56,14 @@ const ListItem = ({
         <Text style={styles.text}>{text}</Text>
         {details && <Text style={styles.details}>{details}</Text>}
       </View>
+      {editable && (
+        <IconButton
+          icon={faPencil}
+          color={colors.cardContrast}
+          hasRipple
+          onPress={onEdit}
+        />
+      )}
       <IconButton
         icon={faTrashCan}
         color={colors.cardContrast}
@@ -96,6 +107,14 @@ ListItem.propTypes = {
    * Called when the item is deleted.
    */
   onDelete: PropTypes.func.isRequired,
+  /**
+   * Whether the item can or cannot be edited. Defaults to `false`.
+   */
+  editable: PropTypes.bool,
+  /**
+   * Called when an item is edited, if the list supports it.
+   */
+  onEdit: PropTypes.func,
 };
 
 export default ListItem;
