@@ -18,7 +18,10 @@
     "settings": "Settings"
   },
   "patterns": {
-    "patterns_long": "Saved Patterns"
+    "patterns_long": "Saved Patterns",
+    "select_document": "Select document",
+    "empty_pattern_list": "Your pattern list is empty",
+    "no_name": "Unnamed Pattern"
   },
   "wips": {
     "wips_long": "Works in Progress",

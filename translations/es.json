@@ -18,7 +18,10 @@
     "settings": "Ajustes"
   },
   "patterns": {
-    "patterns_long": "Patrones guardados"
+    "patterns_long": "Patrones guardados",
+    "select_document": "Seleccionar documento",
+    "empty_pattern_list": "Tu lista de patrones está vacía",
+    "no_name": "Patrón sin nombre"
   },
   "wips": {
     "wips_long": "Trabajos pendientes",

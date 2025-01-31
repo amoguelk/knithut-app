@@ -53,7 +53,9 @@ const ListItem = ({
         />
       )}
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{text}</Text>
+        <Text numberOfLines={2} style={styles.text}>
+          {text}
+        </Text>
         {details && <Text style={styles.details}>{details}</Text>}
       </View>
       {editable && (
