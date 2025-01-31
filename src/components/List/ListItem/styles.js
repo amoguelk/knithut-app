@@ -1,4 +1,4 @@
-const getStyles = (colors) => ({
+const getStyles = (colors, disabled = false) => ({
   item: {
     paddingVertical: 10,
     flexDirection: 'row',
@@ -7,11 +7,11 @@ const getStyles = (colors) => ({
   },
   textContainer: { flex: 1 },
   text: {
-    color: colors.cardContrast,
+    color: disabled ? colors.disabled : colors.cardContrast,
     fontSize: 20,
   },
   details: {
-    color: colors.cardContrast,
+    color: disabled ? colors.disabled : colors.cardContrast,
     fontSize: 14,
   },
 });

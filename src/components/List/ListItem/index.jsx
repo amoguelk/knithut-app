@@ -15,8 +15,8 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 // Styling
 import { useTheme } from 'contexts/ThemeContext';
-import getStyles from './styles';
 import getDarkerColor from 'utils/colorFuncs';
+import getStyles from './styles';
 
 /**
  * A single item to be used within a `List` component
@@ -31,11 +31,12 @@ const ListItem = ({
   editable = false,
   onEdit = () => {},
   onPress = null,
+  disabled = false,
 }) => {
   const {
     theme: { colors },
   } = useTheme();
-  const styles = getStyles(colors);
+  const styles = getStyles(colors, disabled);
   const { t } = useTranslation();
 
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
@@ -49,7 +50,9 @@ const ListItem = ({
     <Pressable
       onPress={onPress ?? (() => {})}
       style={styles.item}
-      android_ripple={onPress ? { color: getDarkerColor(colors.card) } : {}}
+      android_ripple={
+        onPress && !disabled ? { color: getDarkerColor(colors.card) } : {}
+      }
     >
       {checkable && (
         <IconButton
@@ -59,7 +62,7 @@ const ListItem = ({
         />
       )}
       <View style={styles.textContainer}>
-        <Text numberOfLines={2} style={styles.text}>
+        <Text numberOfLines={3} style={styles.text}>
           {text}
         </Text>
         {details && <Text style={styles.details}>{details}</Text>}
@@ -127,6 +130,10 @@ ListItem.propTypes = {
    * Called when the item is pressed.
    */
   onPress: PropTypes.func,
+  /**
+   * Whether the item is disabled. Defaults to `false`.
+   */
+  disabled: PropTypes.bool,
 };
 
 export default ListItem;

@@ -38,6 +38,7 @@ const List = ({
    * @param {string} data.title
    * @param {string} [data.details='']
    * @param {boolean} [data.checked=false]
+   * @param {boolean} [data.disabled=false]
    * @param {number} data.index The index of the item
    * @returns
    */
@@ -52,6 +53,7 @@ const List = ({
       editable={editable}
       onEdit={editable ? () => handleItemEdit(index) : () => {}}
       onPress={handleItemPress ? () => handleItemPress?.(index) : null}
+      disabled={item?.disabled}
     />
   );
 
@@ -75,15 +77,17 @@ const List = ({
 List.propTypes = {
   /**
    * The items that go in the list, in the form of an array of objects.
-   *
-   * Each object must include a `text` key, which contains the main text of the item.
-   * Optionally, they can also contain a `details` key (with supplementary text) and a `checked` key, which indicates if the item is checked, if the list supports it.
+   * @param {string} text Main text of the item
+   * @param {string} [details=''] Supplemetary text
+   * @param {boolean} [checked=false] If the item is checked
+   * @param {boolean} [disabled=false] If the item is disabled
    */
   items: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
       details: PropTypes.string,
       checked: PropTypes.bool,
+      disabled: PropTypes.bool,
     }),
   ).isRequired,
   /**

@@ -41,7 +41,7 @@ const IconButton = ({
       onPress={onPress}
       style={{
         margin: 10,
-        alignSelf: 'flex-start',
+        alignSelf: 'center',
         ...customStyle,
       }}
       android_ripple={

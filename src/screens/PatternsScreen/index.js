@@ -105,6 +105,7 @@ const PatternsScreen = () => {
         items={patterns.map((pattern) => ({
           text: pattern.fileName ?? t('patterns:no_name'),
           details: !pattern.available ? t('patterns:unavailable') : '',
+          disabled: !pattern.available,
         }))}
         emptyText={t('patterns:empty_pattern_list')}
         handleItemDelete={handlePatternDelete}
