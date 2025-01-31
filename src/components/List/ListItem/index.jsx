@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // Components
-import { Text, View } from 'react-native';
+import { Text, View, Pressable } from 'react-native';
 import { IconButton } from 'components/buttons';
 import { ConfirmModal } from 'components/modals';
 import {
@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 // Styling
 import { useTheme } from 'contexts/ThemeContext';
 import getStyles from './styles';
+import getDarkerColor from 'utils/colorFuncs';
 
 /**
  * A single item to be used within a `List` component
@@ -29,6 +30,7 @@ const ListItem = ({
   onDelete,
   editable = false,
   onEdit = () => {},
+  onPress = null,
 }) => {
   const {
     theme: { colors },
@@ -44,7 +46,11 @@ const ListItem = ({
   };
 
   return (
-    <View style={styles.item}>
+    <Pressable
+      onPress={onPress ?? (() => {})}
+      style={styles.item}
+      android_ripple={onPress ? { color: getDarkerColor(colors.card) } : {}}
+    >
       {checkable && (
         <IconButton
           icon={checked ? faSquareCheck : faSquare}
@@ -80,7 +86,7 @@ const ListItem = ({
         confirmText={t('basic:delete')}
         confirmAction={handleDelete}
       />
-    </View>
+    </Pressable>
   );
 };
 
@@ -117,6 +123,10 @@ ListItem.propTypes = {
    * Called when an item is edited, if the list supports it.
    */
   onEdit: PropTypes.func,
+  /**
+   * Called when the item is pressed.
+   */
+  onPress: PropTypes.func,
 };
 
 export default ListItem;

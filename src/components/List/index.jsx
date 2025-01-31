@@ -23,6 +23,7 @@ const List = ({
   emptyText = null,
   editable = false,
   handleItemEdit = () => {},
+  handleItemPress = null,
 }) => {
   const {
     theme: { colors },
@@ -50,6 +51,7 @@ const List = ({
       onDelete={() => handleItemDelete(index)}
       editable={editable}
       onEdit={editable ? () => handleItemEdit(index) : () => {}}
+      onPress={handleItemPress ? () => handleItemPress?.(index) : null}
     />
   );
 
@@ -111,6 +113,11 @@ List.propTypes = {
    * @param {number} index The index of the item to be edited
    */
   handleItemEdit: PropTypes.func,
+  /**
+   * Called when an item is pressed
+   * @param {number} index The index of the item pressed
+   */
+  handleItemPress: PropTypes.func,
 };
 
 export default List;

@@ -21,7 +21,9 @@
     "patterns_long": "Patrones guardados",
     "select_document": "Seleccionar documento",
     "empty_pattern_list": "Tu lista de patrones está vacía",
-    "no_name": "Patrón sin nombre"
+    "no_name": "Patrón sin nombre",
+    "unavailable": "Patrón no disponible",
+    "unavailable_info": "Ya no puedes abrir este patrón desde esta app. Esto puede ser porque borraste el archivo en tu celular o porque quitaste el acceso de la app al archivo desde los ajustes de tu teléfono.\n\nSi todavía tienes el patrón, intenta borrarlo de esta lista y volverlo a agregar."
   },
   "wips": {
     "wips_long": "Trabajos pendientes",
