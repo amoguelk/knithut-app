@@ -18,7 +18,12 @@
     "settings": "Settings"
   },
   "patterns": {
-    "patterns_long": "Saved Patterns"
+    "patterns_long": "Saved Patterns",
+    "select_document": "Select document",
+    "empty_pattern_list": "Your pattern list is empty",
+    "no_name": "Unnamed Pattern",
+    "unavailable": "Pattern not available",
+    "unavailable_info": "You can no longer open this pattern from this app. This could be because you've deleted the file on your phone, or because you've removed the app's access to the file from your phone's settings.\n\nIf you still have the pattern, try deleting the entry from this list and adding it again."
   },
   "wips": {
     "wips_long": "Works in Progress",

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // Components
-import { Text, View } from 'react-native';
+import { Text, View, Pressable } from 'react-native';
 import { IconButton } from 'components/buttons';
 import { ConfirmModal } from 'components/modals';
 import {
@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 // Styling
 import { useTheme } from 'contexts/ThemeContext';
+import getDarkerColor from 'utils/colorFuncs';
 import getStyles from './styles';
 
 /**
@@ -29,11 +30,13 @@ const ListItem = ({
   onDelete,
   editable = false,
   onEdit = () => {},
+  onPress = null,
+  disabled = false,
 }) => {
   const {
     theme: { colors },
   } = useTheme();
-  const styles = getStyles(colors);
+  const styles = getStyles(colors, disabled);
   const { t } = useTranslation();
 
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
@@ -44,7 +47,13 @@ const ListItem = ({
   };
 
   return (
-    <View style={styles.item}>
+    <Pressable
+      onPress={onPress ?? (() => {})}
+      style={styles.item}
+      android_ripple={
+        onPress && !disabled ? { color: getDarkerColor(colors.card) } : {}
+      }
+    >
       {checkable && (
         <IconButton
           icon={checked ? faSquareCheck : faSquare}
@@ -53,7 +62,9 @@ const ListItem = ({
         />
       )}
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{text}</Text>
+        <Text numberOfLines={3} style={styles.text}>
+          {text}
+        </Text>
         {details && <Text style={styles.details}>{details}</Text>}
       </View>
       {editable && (
@@ -78,7 +89,7 @@ const ListItem = ({
         confirmText={t('basic:delete')}
         confirmAction={handleDelete}
       />
-    </View>
+    </Pressable>
   );
 };
 
@@ -115,6 +126,14 @@ ListItem.propTypes = {
    * Called when an item is edited, if the list supports it.
    */
   onEdit: PropTypes.func,
+  /**
+   * Called when the item is pressed.
+   */
+  onPress: PropTypes.func,
+  /**
+   * Whether the item is disabled. Defaults to `false`.
+   */
+  disabled: PropTypes.bool,
 };
 
 export default ListItem;

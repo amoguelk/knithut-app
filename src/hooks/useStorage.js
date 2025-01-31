@@ -12,5 +12,6 @@ export const storageKeys = {
   APP: {
     SHOPPING: 'app.shopping',
     WIPS: 'app.wips',
+    PATTERNS: 'app.patterns',
   },
 };
