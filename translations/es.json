@@ -1,0 +1,65 @@
+{
+  "basic": {
+    "ok": "Ok",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "add": "Añadir",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "empty_list": "Esta lista está vacía",
+    "empty_tab_nav": "No hay pestañas para mostrar",
+    "wow": "Guau",
+    "close": "Cerrar"
+  },
+  "menu": {
+    "patterns": "Patrones",
+    "wips": "Pendientes",
+    "shopping_list": "Lista de compras",
+    "settings": "Ajustes"
+  },
+  "patterns": {
+    "patterns_long": "Patrones guardados",
+    "select_document": "Seleccionar documento",
+    "empty_pattern_list": "Tu lista de patrones está vacía",
+    "no_name": "Patrón sin nombre",
+    "unavailable": "Patrón no disponible",
+    "unavailable_info": "Ya no puedes abrir este patrón desde esta app. Esto puede ser porque borraste el archivo en tu celular o porque quitaste el acceso de la app al archivo desde los ajustes de tu teléfono.\n\nSi todavía tienes el patrón, intenta borrarlo de esta lista y volverlo a agregar."
+  },
+  "wips": {
+    "wips_long": "Trabajos pendientes",
+    "stopwatch_limit_message": "Guau, 1000 horas en este proyecto. Qué cool. Desafortunadamente, puse un límite de 3 dígitos para las horas, así que escribe ese numerote en alguna parte porque el cronómetro se reiniciará en el momento que cierres esta alerta.",
+    "stopwatch_running": "Cronómetro corriendo",
+    "stopwatch_running_message": "Tu cronómetro de proyecto está corriendo",
+    "notes": "Notas",
+    "row": "Fila",
+    "pattern_name": "Nombre del patrón",
+    "pattern_section": "Sección del patrón (eg. 'cabeza', 'manga derecha', etc.)",
+    "empty_wip_nav": "No hay trabajos pendientes para mostrar",
+    "add_wip": "Añadir un trabajo pendiente",
+    "wip_name_hint": "Suéter de gatitos",
+    "delete_wip": "¿Eliminar trabajo pendiente?",
+    "delete_wip_detail": "¿Eliminar trabajo pendiente '{{name}}'?"
+  },
+  "shopping_list": {
+    "delete_item": "¿Eliminar artículo?",
+    "delete_item_detail": "¿Eliminar artículo '{{item}}'?",
+    "item_title_hint": "Estambre dorado de Ariadne",
+    "item_details_hint": "Asegurarse de que sea muy largo, ese laberinto es bastante grande",
+    "empty_shopping_list": "Tu lista de compras está vacía",
+    "add_item": "Añadir artículo",
+    "edit_item": "Editar artículo"
+  },
+  "settings": {
+    "kofi": {
+      "title": "Mi Ko-fi",
+      "message": "¡Hola! Creé esta app para mí porque nunca podía encontrar la herramienta correcta para mis necesidades. Decidí compartirla con el mundo para cualquier otra persona como yo que pudiera necesitarla.\nSi eres una de esas personas y te gustaría agradecerme (de forma monetaria), por favor considera donar a mi Ko-fi.",
+      "donate": "Donar",
+      "not_now": "Ahora no",
+      "thank_you": "¡Gracias!"
+    },
+    "current_theme": "Tema actual: {{theme}}",
+    "dark": "Oscuro",
+    "light": "Claro",
+    "change_language": "Cambiar idioma"
+  }
+}
