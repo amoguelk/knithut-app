@@ -1,30 +1,13 @@
 import React, { useState } from 'react';
 import uuid from 'react-native-uuid';
 import TabNavigator from 'navigation/TabNavigator';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'components/buttons';
-import CreateWipModal from 'screens/ListScreen/CreateEditItemModal';
+import WipElement from 'screens/WipScreen/WipElement';
+import CreateWipModal from 'screens/WipScreen/CreateWipModal';
 import { useTheme } from 'contexts/ThemeContext';
 import { useStorage, storageKeys } from 'hooks/useStorage';
 import { useTranslation } from 'react-i18next';
-
-const WipElement = ({
-  route: {
-    params: { name, key },
-  },
-}) => {
-  return (
-    <View
-      style={{
-        padding: 20,
-      }}
-    >
-      <Text>
-        {name} ({key})
-      </Text>
-    </View>
-  );
-};
 
 const WipScreen = () => {
   const {

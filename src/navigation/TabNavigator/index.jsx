@@ -34,9 +34,7 @@ const TabNavigator = ({ tabs = [], screenComponent, emptyMessage = null }) => {
         tabBarScrollEnabled: true,
         tabBarIndicatorStyle: { backgroundColor: colors.primary, height: 5 },
         sceneStyle: {
-          borderBottomStartRadius: 10,
-          borderBottomEndRadius: 10,
-          backgroundColor: colors.card,
+          backgroundColor: null,
         },
       }}
     >
@@ -71,7 +69,8 @@ TabNavigator.propTypes = {
   /**
    * The component to display for each tab screen.
    */
-  screenComponent: PropTypes.node.isRequired,
+  screenComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+    .isRequired,
   /**
    * The text to display to indicate to the user that there are no tabs to display. If none is given, defaults to `There are no tabs to display` (translated if necessary).
    */
