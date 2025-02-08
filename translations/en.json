@@ -32,6 +32,7 @@
     "stopwatch_running_message": "Your project stopwatch is running",
     "notes": "Notes",
     "row": "Row",
+    "edit_row": "Edit row number",
     "pattern_name": "Pattern name",
     "pattern_section": "Pattern section (eg. 'head', 'left sleeve', etc.)",
     "empty_wip_nav": "There are no WIPs to display",

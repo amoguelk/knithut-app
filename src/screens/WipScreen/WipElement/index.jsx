@@ -50,6 +50,7 @@ const WipElement = ({
             placeholder={t('wips:pattern_name')}
             maxLength={40}
             placeholderTextColor={colors.text}
+            numberOfLines={1}
           />
           <TextInput
             style={[styles.text, styles.simpleInput]}
