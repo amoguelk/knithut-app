@@ -9,7 +9,8 @@
     "wow": "WOW",
     "empty_list": "This list is empty",
     "empty_tab_nav": "There are no tabs to display",
-    "close": "Close"
+    "close": "Close",
+    "loading": "Loading..."
   },
   "menu": {
     "patterns": "Patterns",
@@ -33,8 +34,9 @@
     "notes": "Notes",
     "row": "Row",
     "edit_row": "Edit row number",
-    "pattern_name": "Pattern name",
-    "pattern_section": "Pattern section (eg. 'head', 'left sleeve', etc.)",
+    "project_name": "Project name",
+    "no_project_name": "Unnamed project",
+    "project_section": "Project section (eg. 'head', 'left sleeve', etc.)",
     "empty_wip_nav": "There are no WIPs to display",
     "add_wip": "Add a WIP",
     "wip_name_hint": "Kitty sweater",

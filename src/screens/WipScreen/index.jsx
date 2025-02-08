@@ -15,13 +15,24 @@ const WipScreen = () => {
   } = useTheme();
   const { t } = useTranslation();
 
-  const [wipList, setWipList] = useStorage(storageKeys.APP.WIPS, []);
+  const [wips, setWips] = useStorage(storageKeys.APP.WIPS, {});
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleModalClose = (reason, name) => {
     setIsModalVisible(false);
     if (reason === 'add') {
-      setWipList([...wipList, { name, key: uuid.v4() }]);
+      const id = uuid.v4();
+      setWips({
+        ...wips,
+        [id]: {
+          pattern: {
+            name,
+            section: '',
+            row: 0,
+            notes: '',
+          },
+        },
+      });
     }
   };
 
@@ -35,7 +46,7 @@ const WipScreen = () => {
       }}
     >
       <TabNavigator
-        tabs={wipList}
+        tabs={Object.keys(wips)}
         screenComponent={WipElement}
         emptyMessage={t('wips:empty_wip_nav')}
       />
