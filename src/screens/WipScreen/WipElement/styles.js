@@ -5,7 +5,7 @@ const getStyles = (colors) => ({
     flex: 1,
     backgroundColor: colors.primary,
     padding: 20,
-    // justifyContent: 'center',
+    justifyContent: 'center',
   },
   text: {
     color: colors.text,

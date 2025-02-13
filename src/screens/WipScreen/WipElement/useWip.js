@@ -9,11 +9,17 @@ const useWip = (wips, setWips, wipId) => {
     setWips(wipsCopy);
   };
 
+  const handleDeleteWip = () => {
+    const wipsCopy = { ...wips };
+    delete wipsCopy[wipId];
+    setWips(wipsCopy);
+  };
+
   useEffect(() => {
     setPattern(wips?.[wipId]?.pattern ?? null);
   }, [wips, wipId]);
 
-  return { pattern, handleSetPattern };
+  return { pattern, handleSetPattern, handleDeleteWip };
 };
 
 export default useWip;

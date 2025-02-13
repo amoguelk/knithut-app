@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import uuid from 'react-native-uuid';
 import TabNavigator from 'navigation/TabNavigator';
 import { View } from 'react-native';
@@ -36,6 +36,8 @@ const WipScreen = () => {
     }
   };
 
+  const tabs = useMemo(() => Object.keys(wips), [wips]);
+
   return (
     <View
       style={{
@@ -46,7 +48,7 @@ const WipScreen = () => {
       }}
     >
       <TabNavigator
-        tabs={Object.keys(wips)}
+        tabs={tabs}
         screenComponent={WipElement}
         emptyMessage={t('wips:empty_wip_nav')}
       />

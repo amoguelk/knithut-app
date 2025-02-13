@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // Components
-import { View, TextInput, Text, KeyboardAvoidingView } from 'react-native';
+import {
+  View,
+  TextInput,
+  Text,
+  KeyboardAvoidingView,
+  ActivityIndicator,
+} from 'react-native';
 import RowCounter from 'screens/WipScreen/WipElement/RowCounter';
+import { Button } from 'components/buttons';
+import { DeleteModal } from 'components/modals';
 import dayjs from 'dayjs';
 // Storage
 import { storageKeys, useStorage } from 'hooks/useStorage';
@@ -21,23 +29,33 @@ const WipElement = ({
   navigation,
 }) => {
   const [wips, setWips] = useStorage(storageKeys.APP.WIPS, {});
-  const { pattern, handleSetPattern } = useWip(wips, setWips, id);
+  const { pattern, handleSetPattern, handleDeleteWip } = useWip(
+    wips,
+    setWips,
+    id,
+  );
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const { t } = useTranslation();
   const {
     theme: { colors },
   } = useTheme();
   const styles = getStyles(colors);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let title = pattern?.name ?? t('basic:loading');
     if (title.length === 0) title = t('wips:no_project_name');
     else if (title.length > 15) title = `${title.slice(0, 15)}...`;
     navigation.setOptions({ title });
   }, [navigation, pattern]);
 
+  const handleDelete = () => {
+    handleDeleteWip();
+    setIsDeleteModalVisible(false);
+  };
+
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
-      {!pattern && <Text>{t('basic:loading')}</Text>}
+      {!pattern && <ActivityIndicator size="large" color={colors.text} />}
       {pattern && (
         <>
           <View style={[styles.subContainer, styles.infoContainer]}>
@@ -85,6 +103,34 @@ const WipElement = ({
               maxLength={500}
             />
           </View>
+          {/* <View style={styles.subContainer}>
+            <Stopwatch
+              startTime={stopwatch.start}
+              setStartTime={(s) =>
+                setStopwatch((prev) => ({ ...prev, start: s }))
+              }
+              active={stopwatch.active}
+              setActive={(a) =>
+                setStopwatch((prev) => ({ ...prev, active: a }))
+              }
+              offset={stopwatch.offset}
+              setOffset={(o) =>
+                setStopwatch((prev) => ({ ...prev, offset: o }))
+              }
+            />
+          </View> */}
+          <Button
+            label={t('basic:delete')}
+            onPress={() => setIsDeleteModalVisible(true)}
+            buttonColor={colors.error}
+          />
+          <DeleteModal
+            isVisible={isDeleteModalVisible}
+            setIsVisible={setIsDeleteModalVisible}
+            title={t('wips:delete_wip')}
+            message={t('wips:delete_wip_detail', { name: pattern.name })}
+            deleteAction={handleDelete}
+          />
         </>
       )}
     </KeyboardAvoidingView>
