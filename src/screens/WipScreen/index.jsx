@@ -31,6 +31,11 @@ const WipScreen = () => {
             row: 0,
             notes: '',
           },
+          stopwatch: {
+            isActive: false,
+            offset: 0,
+            start: null,
+          },
         },
       });
     }

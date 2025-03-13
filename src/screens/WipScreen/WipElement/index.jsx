@@ -8,9 +8,9 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import RowCounter from 'screens/WipScreen/WipElement/RowCounter';
+import Stopwatch from 'screens/WipScreen/WipElement/Stopwatch';
 import { Button } from 'components/buttons';
 import { DeleteModal } from 'components/modals';
-import dayjs from 'dayjs';
 // Storage
 import { storageKeys, useStorage } from 'hooks/useStorage';
 // Documentation
@@ -29,11 +29,13 @@ const WipElement = ({
   navigation,
 }) => {
   const [wips, setWips] = useStorage(storageKeys.APP.WIPS, {});
-  const { pattern, handleSetPattern, handleDeleteWip } = useWip(
-    wips,
-    setWips,
-    id,
-  );
+  const {
+    pattern,
+    handleSetPattern,
+    stopwatch,
+    handleSetStopwatch,
+    handleDeleteWip,
+  } = useWip(wips, setWips, id);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const { t } = useTranslation();
   const {
@@ -103,22 +105,12 @@ const WipElement = ({
               maxLength={500}
             />
           </View>
-          {/* <View style={styles.subContainer}>
+          <View style={styles.subContainer}>
             <Stopwatch
-              startTime={stopwatch.start}
-              setStartTime={(s) =>
-                setStopwatch((prev) => ({ ...prev, start: s }))
-              }
-              active={stopwatch.active}
-              setActive={(a) =>
-                setStopwatch((prev) => ({ ...prev, active: a }))
-              }
-              offset={stopwatch.offset}
-              setOffset={(o) =>
-                setStopwatch((prev) => ({ ...prev, offset: o }))
-              }
+              handleSetStopwatch={handleSetStopwatch}
+              stopwatch={stopwatch}
             />
-          </View> */}
+          </View>
           <Button
             label={t('basic:delete')}
             onPress={() => setIsDeleteModalVisible(true)}
