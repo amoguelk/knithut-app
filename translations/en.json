@@ -9,7 +9,8 @@
     "wow": "WOW",
     "empty_list": "This list is empty",
     "empty_tab_nav": "There are no tabs to display",
-    "close": "Close"
+    "close": "Close",
+    "loading": "Loading..."
   },
   "menu": {
     "patterns": "Patterns",
@@ -29,11 +30,13 @@
     "wips_long": "Works in Progress",
     "stopwatch_limit_message": "Wow, 1000 hours on this project. That's cool. Unfortunately, I did set a 3-digit limit for the hours, so write that big number down elsewhere because the stopwatch will reset the moment you dismiss this alert.",
     "stopwatch_running": "Stopwatch running",
-    "stopwatch_running_message": "Your project stopwatch is running",
+    "stopwatch_running_message": "The stopwatch is running for your project '{{name}}'",
     "notes": "Notes",
     "row": "Row",
-    "pattern_name": "Pattern name",
-    "pattern_section": "Pattern section (eg. 'head', 'left sleeve', etc.)",
+    "edit_row": "Edit row number",
+    "project_name": "Project name",
+    "no_project_name": "Unnamed project",
+    "project_section": "Project section (eg. 'head', 'left sleeve', etc.)",
     "empty_wip_nav": "There are no WIPs to display",
     "add_wip": "Add a WIP",
     "wip_name_hint": "Kitty sweater",

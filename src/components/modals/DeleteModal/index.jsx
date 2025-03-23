@@ -11,17 +11,17 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from 'contexts/ThemeContext';
 
 /**
- * Modal that displays a message and two buttons: one to confirm (accept, add, change, etc.) and one to cancel.
+ * Modal that displays a message and two buttons: one to delete and one to cancel.
  */
-const ConfirmModal = ({
+const DeleteModal = ({
   isVisible,
   setIsVisible,
   title,
   message = null,
-  confirmAction = null,
+  deleteAction = null,
   cancelAction = null,
   cancelText = null,
-  confirmText = null,
+  deleteText = null,
   disabled = false,
   children = null,
 }) => {
@@ -49,21 +49,21 @@ const ConfirmModal = ({
           label={cancelText ?? t('basic:cancel')}
           onPress={cancelAction ?? (() => setIsVisible(false))}
           containerStyle={{ flex: 1 }}
-          buttonColor={colors.error}
           hasRipple={false}
         />
         <Button
-          label={confirmText ?? t('basic:confirm')}
-          onPress={confirmAction ?? (() => setIsVisible(false))}
+          label={deleteText ?? t('basic:delete')}
+          onPress={deleteAction ?? (() => setIsVisible(false))}
           containerStyle={{ flex: 1 }}
           disabled={disabled}
+          buttonColor={colors.error}
         />
       </View>
     </BasicModal>
   );
 };
 
-ConfirmModal.propTypes = {
+DeleteModal.propTypes = {
   /**
    * Whether the modal is visible or not.
    */
@@ -81,9 +81,9 @@ ConfirmModal.propTypes = {
    */
   message: PropTypes.string,
   /**
-   * Called when the `Confirm` button is pressed. If none is given, the default action is to close the modal.
+   * Called when the `Delete` button is pressed. If none is given, the default action is to close the modal.
    */
-  confirmAction: PropTypes.func,
+  deleteAction: PropTypes.func,
   /**
    * Called when the `Cancel` button is pressed. If none is given, the default action is to close the modal.
    */
@@ -93,11 +93,11 @@ ConfirmModal.propTypes = {
    */
   cancelText: PropTypes.string,
   /**
-   * Text displayed on the cancel button. Defaults to `Confirm` (translated if necessary).
+   * Text displayed on the cancel button. Defaults to `Delete` (translated if necessary).
    */
-  confirmText: PropTypes.string,
+  deleteText: PropTypes.string,
   /**
-   * Whether the confirm button is disabled. Defaults to `false`.
+   * Whether the delete button is disabled. Defaults to `false`.
    */
   disabled: PropTypes.bool,
   /**
@@ -106,4 +106,4 @@ ConfirmModal.propTypes = {
   children: PropTypes.node,
 };
 
-export default ConfirmModal;
+export default DeleteModal;
