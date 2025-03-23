@@ -109,6 +109,8 @@ const WipElement = ({
             <Stopwatch
               handleSetStopwatch={handleSetStopwatch}
               stopwatch={stopwatch}
+              wipId={id}
+              wipName={pattern.name}
             />
           </View>
           <Button

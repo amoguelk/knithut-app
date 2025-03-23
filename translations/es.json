@@ -30,7 +30,7 @@
     "wips_long": "Trabajos pendientes",
     "stopwatch_limit_message": "Guau, 1000 horas en este proyecto. Qué cool. Desafortunadamente, puse un límite de 3 dígitos para las horas, así que escribe ese numerote en alguna parte porque el cronómetro se reiniciará en el momento que cierres esta alerta.",
     "stopwatch_running": "Cronómetro corriendo",
-    "stopwatch_running_message": "Tu cronómetro de proyecto está corriendo",
+    "stopwatch_running_message": "El cronómetro está corriendo para tu proyecto '{{name}}'",
     "notes": "Notas",
     "row": "Vuelta",
     "edit_row": "Editar número de vuelta",

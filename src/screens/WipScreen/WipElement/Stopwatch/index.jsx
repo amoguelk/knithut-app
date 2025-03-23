@@ -11,6 +11,8 @@ import { InfoModal } from 'components/modals';
 import dayjs from 'dayjs';
 // Navigation
 import { useFocusEffect } from '@react-navigation/native';
+// Notifications
+import notifee, { AndroidImportance } from '@notifee/react-native';
 // Translation
 import { useTranslation } from 'react-i18next';
 // Documentation
@@ -19,7 +21,7 @@ import PropTypes from 'prop-types';
 import { useTheme } from 'contexts/ThemeContext';
 import getStyles from './styles';
 
-const Stopwatch = ({ handleSetStopwatch, stopwatch }) => {
+const Stopwatch = ({ handleSetStopwatch, stopwatch, wipId, wipName }) => {
   const {
     theme: { colors },
   } = useTheme();
@@ -28,6 +30,30 @@ const Stopwatch = ({ handleSetStopwatch, stopwatch }) => {
   const { isActive, offset, start = null } = stopwatch;
   const [isSecretModalVisible, setIsSecretModalVisible] = useState(false);
   const ref = useRef(null);
+
+  const displayNotification = async ({ title, body }) => {
+    // Request permissions
+    await notifee.requestPermission();
+    // Create channel
+    const channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
+    });
+
+    await notifee.displayNotification({
+      id: wipId,
+      title,
+      body,
+      android: {
+        channelId,
+        pressAction: { id: 'default' },
+        importance: AndroidImportance.LOW,
+        color: colors.primary,
+        autoCancel: false,
+        ongoing: true,
+      },
+    });
+  };
 
   const padNumbers = (num) => (num < 10 ? `0${num}` : String(num));
 
@@ -69,33 +95,30 @@ const Stopwatch = ({ handleSetStopwatch, stopwatch }) => {
     };
   }, [isActive]);
 
-  const handleStartPause = () => {
+  const handleStartPause = async () => {
     if (!isActive) {
       handleSetStopwatch({
         offset,
         start: dayjs().subtract(offset, 'second').toString(),
         isActive: true,
       });
-      // await Notifications.scheduleNotificationAsync({
-      //   content: {
-      //     title: t('stopwatch_running'),
-      //     body: t('stopwatch_running_message'),
-      //     sticky: true,
-      //     autoDismiss: false,
-      //   },
-      //   trigger: null,
-      // });
+      await displayNotification({
+        title: `${t('wips:stopwatch_running')} &#9201;`,
+        body: t('wips:stopwatch_running_message', {
+          name: wipName?.length > 0 ? wipName : t('wips:no_project_name'),
+        }),
+      });
     } else {
       handleSetStopwatch({
         isActive: false,
         start: null,
         offset: Math.floor(-dayjs(start).diff() / 1000),
       });
-      // await Notifications.dismissAllNotificationsAsync();
+      await notifee.cancelNotification(wipId);
     }
   };
 
-  const handleReset = () => {
+  const handleReset = async () => {
     clearInterval(ref.current);
     handleSetStopwatch({
       isActive: false,
@@ -103,7 +126,7 @@ const Stopwatch = ({ handleSetStopwatch, stopwatch }) => {
       offset: 0,
     });
     setDisplayTime({ h: '00', m: '00', s: '00' });
-    // await Notifications.dismissAllNotificationsAsync();
+    await notifee.cancelNotification(wipId);
   };
 
   return (
@@ -167,6 +190,14 @@ Stopwatch.propTypes = {
    * @param {object} newStopwatch
    */
   handleSetStopwatch: PropTypes.func.isRequired,
+  /**
+   * The WIP's unique ID
+   */
+  wipId: PropTypes.string.isRequired,
+  /**
+   * The WIP's name
+   */
+  wipName: PropTypes.string,
 };
 
 export default Stopwatch;
