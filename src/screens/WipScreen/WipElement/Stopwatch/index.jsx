@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 // Navigation
 import { useFocusEffect } from '@react-navigation/native';
 // Notifications
+import notifications from 'utils/notifications';
 import notifee, { AndroidImportance } from '@notifee/react-native';
 // Translation
 import { useTranslation } from 'react-i18next';
@@ -30,30 +31,6 @@ const Stopwatch = ({ handleSetStopwatch, stopwatch, wipId, wipName }) => {
   const { isActive, offset, start = null } = stopwatch;
   const [isSecretModalVisible, setIsSecretModalVisible] = useState(false);
   const ref = useRef(null);
-
-  const displayNotification = async ({ title, body }) => {
-    // Request permissions
-    await notifee.requestPermission();
-    // Create channel
-    const channelId = await notifee.createChannel({
-      id: 'default',
-      name: 'Default Channel',
-    });
-
-    await notifee.displayNotification({
-      id: wipId,
-      title,
-      body,
-      android: {
-        channelId,
-        pressAction: { id: 'default' },
-        importance: AndroidImportance.LOW,
-        color: colors.primary,
-        autoCancel: false,
-        ongoing: true,
-      },
-    });
-  };
 
   const padNumbers = (num) => (num < 10 ? `0${num}` : String(num));
 
@@ -102,11 +79,16 @@ const Stopwatch = ({ handleSetStopwatch, stopwatch, wipId, wipName }) => {
         start: dayjs().subtract(offset, 'second').toString(),
         isActive: true,
       });
-      await displayNotification({
+      await notifications.displayNotification({
+        id: wipId,
         title: `${t('wips:stopwatch_running')} &#9201;`,
         body: t('wips:stopwatch_running_message', {
           name: wipName?.length > 0 ? wipName : t('wips:no_project_name'),
         }),
+        importance: AndroidImportance.LOW,
+        color: colors.primary,
+        autoCancel: false,
+        ongoing: true,
       });
     } else {
       handleSetStopwatch({

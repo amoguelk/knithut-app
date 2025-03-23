@@ -10,7 +10,9 @@
     "empty_list": "This list is empty",
     "empty_tab_nav": "There are no tabs to display",
     "close": "Close",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "refuse": "Refuse",
+    "accept": "Accept"
   },
   "menu": {
     "patterns": "Patterns",
@@ -63,6 +65,10 @@
     "current_theme": "Current theme: {{theme}}",
     "dark": "Dark",
     "light": "Light",
-    "change_language": "Change Language"
+    "change_language": "Change Language",
+    "notifications": {
+      "title": "Notification permission",
+      "message": "Knit Hut needs to send you notifications to remind you that one (or many) of your projects' stopwatches are running."
+    }
   }
 }

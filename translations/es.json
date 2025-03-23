@@ -63,6 +63,10 @@
     "current_theme": "Tema actual: {{theme}}",
     "dark": "Oscuro",
     "light": "Claro",
-    "change_language": "Cambiar idioma"
+    "change_language": "Cambiar idioma",
+    "notifications": {
+      "title": "Permiso de notificaciones",
+      "message": "Knit Hut necesita poder enviarte notificaciones para recordarte que está corriendo el cronómetro de uno o varios de tus proyectos."
+    }
   }
 }
