@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // Components
 import { Text, View, Pressable } from 'react-native';
 import { IconButton } from 'components/buttons';
-import { ConfirmModal } from 'components/modals';
+import { DeleteModal } from 'components/modals';
 import {
   faPencil,
   faSquare,
@@ -81,13 +81,12 @@ const ListItem = ({
         hasRipple
         onPress={() => setIsDeleteModalVisible(true)}
       />
-      <ConfirmModal
+      <DeleteModal
         isVisible={isDeleteModalVisible}
         setIsVisible={setIsDeleteModalVisible}
         title={t('shopping_list:delete_item')}
         message={t('shopping_list:delete_item_detail', { item: text })}
-        confirmText={t('basic:delete')}
-        confirmAction={handleDelete}
+        deleteAction={handleDelete}
       />
     </Pressable>
   );

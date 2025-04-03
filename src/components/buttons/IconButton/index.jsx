@@ -17,6 +17,7 @@ const IconButton = ({
   customStyle = {},
   hasRipple = false,
   onPress = () => {},
+  disabled = false,
 }) => {
   const {
     theme: { colors },
@@ -38,6 +39,7 @@ const IconButton = ({
 
   return (
     <Pressable
+      disabled={disabled}
       onPress={onPress}
       style={{
         margin: 10,
@@ -86,6 +88,10 @@ IconButton.propTypes = {
    * Called when a single tap is detected.
    */
   onPress: PropTypes.func,
+  /**
+   * Whether the button is disabled or not. Defaults to `false`.
+   */
+  disabled: PropTypes.bool,
 };
 
 export default IconButton;

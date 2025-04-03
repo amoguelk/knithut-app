@@ -30,7 +30,7 @@ const CreateEditItemModal = ({
   const { t } = useTranslation();
 
   const handleClose = (reason) => {
-    onClose(reason, title, details);
+    onClose(reason);
     setTitle('');
     setDetails('');
   };
@@ -40,7 +40,6 @@ const CreateEditItemModal = ({
     <ConfirmModal
       isVisible={isVisible}
       setIsVisible={setIsVisible}
-      pressableBackdrop={false}
       title={t(`shopping_list:${purposeStr}_item`)}
       confirmText={t(`basic:${purposeStr}`)}
       confirmAction={() => handleClose(purposeStr)}
@@ -72,7 +71,7 @@ const CreateEditItemModal = ({
 
 CreateEditItemModal.propTypes = {
   /**
-   * Whether the modal is visible or not. Required.
+   * Whether the modal is visible or not.
    */
   isVisible: PropTypes.bool.isRequired,
   /**
@@ -81,7 +80,7 @@ CreateEditItemModal.propTypes = {
   setIsVisible: PropTypes.func.isRequired,
   /**
    * Called when the modal is closed.
-   * @param {'cancel' |'add' | 'edit'} reason The reason why the modal was closed. Can be `'cancel'`, `'add'` or `'edit'`.
+   * @param {'cancel' | 'add' | 'edit'} reason The reason why the modal was closed. Can be `'cancel'`, `'add'` or `'edit'`.
    */
   onClose: PropTypes.func.isRequired,
   /**
